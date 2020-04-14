@@ -21,6 +21,28 @@ $.getJSON("/articles", function (data) {
   }
 });
 
+
+$(function() {
+  $(".change-favorited").on("click", function(event) {
+    var id = $(this).data("id");
+    var newFavorite = $(this).data("newfavorite");
+
+    var newFavoriteState = {
+      favorited: newFavorite
+    };
+
+    // Send the PUT request.
+    $.ajax("/articles/" + id, {
+      type: "PUT",
+      data: newFavoriteState
+    }).then(
+      function() {
+        console.log("changed favorited to", newFavorite);
+        // Reload the page to get the updated list
+        location.reload();
+      }
+    );
+  });
 // Whenever someone clicks a p tag
 $(document).on("click", "p", function () {
   // Empty the notes from the note section

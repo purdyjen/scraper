@@ -2,5 +2,28 @@
       <h1>Article Scraper</h1>
       <h2><i>If you can do this...the homework should be no problem.</i></h2>
       <div id="articles"></div>
+      <div id="left">
+<h2>Articles that have not been favorited!</h2>
+<ul>
+  {{#each Articles}}
+    {{#if favorited}}
+      {{> Articles/favorite-block favorited=false}}
+    {{/if}}
+  {{/each}}
+</ul>
+</div>
+
+<div id="right">
+
+<h2>Articles that have been favorited!</h2>
+<ul>
+  {{#each Articles}}
+    {{#unless favorited}}
+        {{> Articles/favorite-block favorited=true}}
+    {{/unless}}
+  {{/each}}
+</ul>
+<br>
+</div>
       <div id="comments"></div>
     </div>
