@@ -1,29 +1,34 @@
-    <div id="wrapper">
-      <h1>Article Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
-      <div id="articles"></div>
-      <div id="left">
-<h2>Articles that have not been favorited!</h2>
-<ul>
-  {{#each Articles}}
-    {{#if favorited}}
-      {{> Articles/favorite-block favorited=false}}
-    {{/if}}
-  {{/each}}
-</ul>
-</div>
+<div id="wrapper">
+  <h1>Article Scraper</h1>
+  <h2><i>If you can do this...the homework should be no problem.</i></h2>
+  <div id="articles"></div>
+  <div id="left">
+    <h2>Articles that have not been favorited!</h2>
+    <ul>
+      {{#each articles}}
+      {{#each this}}
 
-<div id="right">
+      <hr>
+      {{title}}<br>
+      <a href="{{link}}"><img src="{{image}}"></a><br>
+      {{summary}}
+      <button class="change-favorite" data-id="{{_id}}" data-newfavorite="{{favorited}}">
+        Add to Favorites
+      </button>
+      <hr>
+      
+      {{/each}}
+      {{/each}}
+    </ul>
+  </div>
 
-<h2>Articles that have been favorited!</h2>
-<ul>
-  {{#each Articles}}
-    {{#unless favorited}}
-        {{> Articles/favorite-block favorited=true}}
-    {{/unless}}
-  {{/each}}
-</ul>
-<br>
+  <div id="right">
+
+    <h2>Articles that have been favorited!</h2>
+    <ul>
+      
+    </ul>
+    <br>
+  </div>
+  <div id="comments"></div>
 </div>
-      <div id="comments"></div>
-    </div>

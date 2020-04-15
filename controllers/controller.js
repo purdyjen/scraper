@@ -55,7 +55,7 @@ app.get("/", function (req, res) {
     .then(function (scrapedData) {
       // Save all scraped data into a handlebars object.
       var hbsObject = { articles: scrapedData };
-      console.log(hbsObject);
+      // console.log(hbsObject);
       // Send all found articles as an object to be used in the handlebars receieving section of the index.
       res.render("index", hbsObject);
     })
@@ -69,12 +69,8 @@ app.get("/", function (req, res) {
 app.get("/articles", function (req, res) {
   // Grab every document in the Articles collection
   db.Article.find({})
-    .then(function (scrapedData) {
-      // Save all scraped data into a handlebars object.
-      var hbsObject = { articles: scrapedData };
-      console.log(hbsObject);
-      // Send all found articles as an object to be used in the handlebars receieving section of the index.
-      res.render("index", hbsObject);
+    .then(function (dbArticle) {
+      res.json(dbArticle);
     })
     .catch(function (err) {
       // If an error occurred, send it to the client
